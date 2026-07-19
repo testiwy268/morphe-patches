@@ -183,7 +183,7 @@ total = sum(len(e["patches"]) for e in by_pkg.values()) + len(universal)
 readme = readme_path.read_text(encoding="utf-8")
 
 # Marker pattern — matches both <!-- PATCHES_START --> and <!-- PATCHES_START EXPANDED -->
-START_PATTERN = r"<!-- PATCHES_START(?:\s+EXPANDED)?\s*-->"
+START_PATTERN = r"<!-- PATCHES_START(?:\s+(?:\[)?EXPANDED(?:\])?)?\s*-->"
 END_MARKER    = "<!-- PATCHES_END -->"
 
 marker_match = re.search(START_PATTERN, readme)
