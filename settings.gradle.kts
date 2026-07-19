@@ -1,4 +1,4 @@
-rootProject.name = "morphe-patches-template"
+rootProject.name = "dualspace-premium-patches"
 
 pluginManagement {
     repositories {

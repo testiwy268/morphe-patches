@@ -1,14 +1,13 @@
-group = "app.template"
+﻿group = "com.dualspace"
 
 patches {
-    // TODO: Update this section with your project details.
     about {
-        name = "UserXYZ Patches"
-        description = "Patches for apps I like"
-        source = "git@github.com:UserXYZ/morphe-patches.git"
-        author = "Awesome dev"
+        name = "Dualspace Premium Patches"
+        description = "Security assessment patches for Dualspace - forces premium entitlement"
+        source = "https://github.com/testiwy268/morphe-patches.git"
+        author = "testiwy268"
         contact = "na"
-        website = "na"
+        website = "https://github.com/testiwy268/morphe-patches"
         license = "GPLv3"
     }
 }
@@ -19,8 +18,6 @@ kotlin {
     }
 }
 
-// Separate configuration so gson is available at runtime for the
-// generatePatchesList task but never bundled into the APK.
 val patchListGeneratorClasspath: Configuration by configurations.creating
 
 dependencies {
@@ -30,16 +27,12 @@ dependencies {
 
 tasks {
     register<JavaExec>("generatePatchesList") {
-        description = "Build patch with patch list"
-
         dependsOn(build)
-
         classpath = sourceSets["main"].runtimeClasspath + patchListGeneratorClasspath
         mainClass.set("util.PatchListGeneratorKt")
     }
-
-    // Used by gradle-semantic-release-plugin.
     publish {
         dependsOn("generatePatchesList")
     }
 }
+
