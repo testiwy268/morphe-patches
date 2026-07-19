@@ -22,11 +22,6 @@ add `https://github.com/testiwy268/morphe-patches` as a remote source in Morphe 
 It forces the subscription status check to return ACTIVE, unlocking premium entitlement in
 Dualspace without a purchase. It targets Dualspace `1.202-234.1.10` (tested build).
 
-## Building
-
-On Windows, run `build.bat` (uses GITHUB_TOKEN / GITHUB_ACTOR and produces
-`patches/build/libs/patches-*.mpp`). On other platforms use `./gradlew buildAndroid`.
-
 ## License
 
 Dualspace Premium Patches are licensed under the [GNU General Public License v3.0](LICENSE).
