@@ -11,6 +11,9 @@
 |-------------|----------------------|--------------------------------------------------------------------------------------|
 | Dualspace   | `com.xunijun.app.gp` | Bypass purchase state check, Force premium status (ACTIVE), Unlock premium           |
 
+<!-- PATCHES_START [EXPANDED] -->
+<!-- PATCHES_END -->
+
 ## How do I use this thing?
 
 Click [this deeplink](https://morphe.software/add-source?github=testiwy268/morphe-patches)
