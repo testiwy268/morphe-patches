@@ -1,4 +1,4 @@
-﻿# Dualspace Premium Patches
+﻿# testiwy268 patches
 
 ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/testiwy268/morphe-patches/release.yml)
 ![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)
@@ -40,5 +40,5 @@ Dualspace without a purchase. It targets Dualspace `1.202-234.1.10` (tested buil
 
 ## License
 
-Dualspace Premium Patches are licensed under the [GNU General Public License v3.0](LICENSE).
+testiwy268 patches are licensed under the [GNU General Public License v3.0](LICENSE).
 

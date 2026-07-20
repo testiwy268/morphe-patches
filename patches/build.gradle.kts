@@ -2,7 +2,7 @@
 
 patches {
     about {
-        name = "Dualspace Premium Patches"
+        name = "testiwy268 patches"
         description = "Security assessment patches for Dualspace - forces premium entitlement"
         source = "https://github.com/testiwy268/morphe-patches.git"
         author = "testiwy268"
