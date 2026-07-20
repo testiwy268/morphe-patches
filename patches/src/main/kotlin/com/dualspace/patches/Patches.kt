@@ -14,10 +14,10 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
 
-val bypassPurchaseStateCheckPatch = bytecodePatch(
-    name = "Bypass purchase state check",
-    description = "Bypasses the PURCHASED state validation in the billing handler " +
-            "so any purchase state is accepted as valid.",
+val dualSpacePremiumPatch = bytecodePatch(
+    name = "Dualspace Premium Unlock",
+    description = "Complete premium unlock for Dualspace. Bypasses purchase validation " +
+            "and forces ACTIVE subscription status, unlocking all premium features without a purchase.",
     default = true
 ) {
     compatibleWith("com.xunijun.app.gp")
@@ -25,6 +25,7 @@ val bypassPurchaseStateCheckPatch = bytecodePatch(
     execute {
         val my1Class = classDefBy("Lcom/xunijun/app/gp/my1;")
 
+        // Bypass purchase state check
         val fingerprint = Fingerprint(
             strings = listOf("Payment platform returned an unsupported purchase state.")
         )
@@ -45,20 +46,8 @@ val bypassPurchaseStateCheckPatch = bytecodePatch(
                 replaceInstruction(ifEqIndex, gotoInstr)
             }
         }
-    }
-}
 
-val forcePremiumStatusPatch = bytecodePatch(
-    name = "Force premium status",
-    description = "Forces all subscription status checks to return ACTIVE " +
-            "by patching sget-object field references in my1 class.",
-    default = true
-) {
-    compatibleWith("com.xunijun.app.gp")
-
-    execute {
-        val my1Class = classDefBy("Lcom/xunijun/app/gp/my1;")
-
+        // Force premium status
         val fallbackFingerprint = Fingerprint(
             strings = listOf("state_has_ever_subscribed", "state_last_product_id")
         )
@@ -77,25 +66,12 @@ val forcePremiumStatusPatch = bytecodePatch(
             val reg = (instr as OneRegisterInstruction).registerA
             toReplace.add(
                 index to
-                    "sget-object v$reg, Lcom/xunijun/app/gp/cx4;->Y:Lcom/xunijun/app/gp/cx4;"
+                        "sget-object v$reg, Lcom/xunijun/app/gp/cx4;->Y:Lcom/xunijun/app/gp/cx4;"
             )
         }
 
         for ((idx, smali) in toReplace.reversed()) {
             fallbackMethod.replaceInstruction(idx, smali)
         }
-    }
-}
-
-val premiumUnlockPatch = bytecodePatch(
-    name = "Unlock premium",
-    description = "Complete premium unlock for Dualspace. " +
-            "Bypasses purchase validation and forces ACTIVE status.",
-    default = true
-) {
-    compatibleWith("com.xunijun.app.gp")
-    dependsOn(bypassPurchaseStateCheckPatch, forcePremiumStatusPatch)
-
-    execute {
     }
 }
